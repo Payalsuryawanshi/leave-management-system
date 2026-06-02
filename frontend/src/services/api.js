@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000",
+  baseURL: process.env.REACT_APP_API_URL || "",
 });
 
 export const aiApi = axios.create({
-  baseURL: process.env.REACT_APP_AI_URL || "http://localhost:5000",
+  baseURL: process.env.REACT_APP_AI_URL || "",
 });
 
 // Automatically attach token to every request
