@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leave-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: leave-backend
+  template:
+    metadata:
+      labels:
+        app: leave-backend
+    spec:
+      containers:
+        - name: backend
+          image: leave-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              value: 'leavesys_secret'
