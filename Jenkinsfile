@@ -34,15 +34,13 @@ pipeline {
             }
         }
 
-        stage('Deploy Backend') {
-            when {
-                branch 'main'
-            }
+        stage('Deploy') {
             steps {
                 bat '''
-                    kubectl apply -f k8s/deployment.yaml
-                    kubectl apply -f k8s/service.yaml
+                    kubectl apply -f k8s/
                     kubectl rollout status deployment/leave-backend
+                    kubectl rollout status deployment/leave-frontend
+                    kubectl rollout status deployment/leave-ai
                 '''
             }
         }
