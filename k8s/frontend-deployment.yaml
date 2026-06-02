@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leave-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: leave-frontend
+  template:
+    metadata:
+      labels:
+        app: leave-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: leave-frontend:latest
+          ports:
+            - containerPort: 3000

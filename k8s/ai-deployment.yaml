@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leave-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leave-ai
+  template:
+    metadata:
+      labels:
+        app: leave-ai
+    spec:
+      containers:
+        - name: ai-service
+          image: leave-ai:latest
+          ports:
+            - containerPort: 5000
