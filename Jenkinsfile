@@ -5,6 +5,7 @@ pipeline {
         BACKEND_IMAGE = 'leave-backend:latest'
         FRONTEND_IMAGE = 'leave-frontend:latest'
         AI_IMAGE = 'leave-ai:latest'
+        KUBECONFIG = 'C:\\Users\\Payal\\.kube\\config'
     }
 
     stages {
@@ -18,17 +19,17 @@ pipeline {
             parallel {
                 stage('Backend') {
                     steps {
-                        bat "docker build -t %BACKEND_IMAGE% .\\backend"
+                        bat "minikube image build -t %BACKEND_IMAGE% .\\backend"
                     }
                 }
                 stage('Frontend') {
                     steps {
-                        bat "docker build -t %FRONTEND_IMAGE% .\\frontend"
+                        bat "minikube image build -t %FRONTEND_IMAGE% .\\frontend"
                     }
                 }
                 stage('AI') {
                     steps {
-                        bat "docker build -t %AI_IMAGE% .\\ai-service"
+                        bat "minikube image build -t %AI_IMAGE% .\\ai-service"
                     }
                 }
             }
@@ -37,6 +38,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat '''
+                    kubectl config use-context minikube
                     kubectl apply -f k8s/
                     kubectl rollout status deployment/leave-backend
                     kubectl rollout status deployment/leave-frontend
