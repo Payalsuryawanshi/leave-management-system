@@ -6,6 +6,8 @@ pipeline {
         FRONTEND_IMAGE = 'leave-frontend:latest'
         AI_IMAGE = 'leave-ai:latest'
         KUBECONFIG = 'C:\\Users\\Payal\\.kube\\config'
+        MINIKUBE_HOME = 'C:\\Users\\Payal'
+        USERPROFILE = 'C:\\Users\\Payal'
     }
 
     stages {

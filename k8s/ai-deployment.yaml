@@ -15,5 +15,6 @@ spec:
       containers:
         - name: ai-service
           image: leave-ai:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000

@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: leave-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
           env:
